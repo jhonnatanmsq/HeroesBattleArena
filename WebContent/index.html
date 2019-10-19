@@ -26,9 +26,14 @@
 
 	<script src="app/js/app.js"></script>
 
-	<script src="app/js/services/login-service.js"></script>
+	<script src="app/js/services/auth-service.js"></script>
+	<script src="app/js/services/batalha-service.js"></script>
 	<script src="app/js/services/heroi-service.js"></script>
-	<script src="app/js/controllers/login-controller.js"></script>
+	<script src="app/js/services/home-service.js"></script>
+
+	<script src="app/js/controllers/auth-controller.js"></script>
+	<script src="app/js/controllers/batalha-controller.js"></script>
+	<script src="app/js/controllers/home-controller.js"></script>
 
 	
 	<script src="app/js/routes.js"></script>
@@ -50,24 +55,24 @@
 						<a class="nav-link disabled" href="#">Desativado</a>
 					</li>
 				</ul>
-			<div ng-controller="LoginController as LoginController" >
-				<form ng-submit="LoginController.logar(LoginController.jogador)" ng-if="!LoginController.service.jogador" class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="text" placeholder="Nickname" ng-model="LoginController.jogador.nickname">
-					<input class="form-control mr-sm-2" type="password" placeholder="Senha"  ng-model="LoginController.jogador.senha">
+			<div ng-controller="AuthController as Auth" >
+				<form ng-submit="Auth.logar(Auth.jogador)" ng-if="!Auth.service.jogador" class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="text" placeholder="Nickname" ng-model="Auth.jogador.nickname">
+					<input class="form-control mr-sm-2" type="password" placeholder="Senha"  ng-model="Auth.jogador.senha">
 					<button class="btn btn-success my-2 my-sm-0" type="submit">logar</button>
 				</form>
 
-				<div ng-if="LoginController.service.jogador">
+				<div ng-if="Auth.service.jogador">
 					<div class="btn-group " style="margin-right: 20px;">
 						<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fa fa-user" aria-hidden="true"></i> {{LoginController.service.jogador.nickname}}
+								<i class="fa fa-user" aria-hidden="true"></i> {{Auth.service.jogador.nickname}}
 						</button>
 						<div class="dropdown-menu dropdown-menu-right">
 							<a class="dropdown-item" href="#">Action</a>
 							<a class="dropdown-item" href="#">Another action</a>
 							<a class="dropdown-item" href="#">Something else here</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" ng-click="LoginController.logOut()" href="">LogOut</a>
+							<a class="dropdown-item" ng-click="Auth.logOut()" href="">LogOut</a>
 						</div>
 					</div>
 				</div>

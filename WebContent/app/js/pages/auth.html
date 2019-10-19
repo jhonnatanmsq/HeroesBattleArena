@@ -1,0 +1,19 @@
+<div ng-controller="AuthController as Auth" ng-init="Auth.init()">
+   
+    
+    <div class="login-div col-md-5">
+        <h3>Heroes Battle Arena</h3>
+        <hr />
+        <form ng-submit="Auth.logar(Auth.jogador)">
+            <div class="form-group">
+                <label>Login</label>
+                <input type="texto" class="form-control" placeholder="SuperFulano012" ng-model="Auth.jogador.nickname">
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" class="form-control" ng-model="Auth.jogador.senha">
+            </div>
+            <button type="submit" class="btn btn-success">Entrar</button>
+        </form>
+    </div>
+</div>

@@ -7,11 +7,15 @@ app.config(['$routeProvider',
         })
         .when('/login', {
             title: 'Login',
-            templateUrl: 'app/js/pages/login.html'
+            templateUrl: 'app/js/pages/auth.html'
         })
         .when('/game', {
             title: 'Game',
             templateUrl: 'app/js/pages/game.html'
+        })
+        .when('/batalhar', {
+            title: 'Batalha',
+            templateUrl: 'app/js/pages/batalha.html'
         })
 
         .otherwise({

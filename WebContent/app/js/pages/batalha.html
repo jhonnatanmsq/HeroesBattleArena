@@ -1,0 +1,55 @@
+<div class="game-div"  ng-controller="HomeController as Home">
+    <div class="row" class="opacity: 0.75">
+        <div class="col-md-2">
+            <div class="text-center" style="opacity: 1.0">
+                <img src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg" class="img-thumbnail" alt="...">
+            </div>
+            <h1 class="ion-text-center">{{Home.service.jogador.nickname}}</h1>
+
+            <hr>
+
+            <h2 class="ion-text-center">{{Home.service.jogador.heroi.nome}}</h2>            
+
+            <div class="form-group heroi-stats" ng-if="Home.service.jogador.heroi">
+                <span><i class="ra ra-health" aria-hidden="true"></i> Vida: {{Home.service.jogador.heroi.vida}}</span><br>
+                <span><i class="ra ra-sword" aria-hidden="true"></i> Ataque:{{Home.service.jogador.heroi.ataque}}</span><br>
+                <span><i class="ra ra-muscle-up" aria-hidden="true"></i> Forca:{{Home.service.jogador.heroi.forca}}</span><br>
+                <span><i class="ra ra-book" aria-hidden="true"></i> Inteligencia:{{Home.service.jogador.heroi.inteligencia}}</span><br>
+                <span><i class="ra ra-shield" aria-hidden="true"></i> Defesa:{{Home.service.jogador.heroi.defesa}}</span><br>
+                <span><i class="ra ra-player-dodge" aria-hidden="true"></i> Velocidade:{{Home.service.jogador.heroi.velocidade}}</span><br>
+                <span><i class="ra ra-blaster" aria-hidden="true"></i> Poder:{{Home.service.jogador.heroi.poder}}</span><br>
+            </div>        
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">        
+                <button ng-click="Home.batalhar()" class="btn btn-primary">batalha</button>
+                <p ng-if="Home.batalha.mensagem">Heroi vencedor: {{Home.batalha.mensagem.heroiVencedor}}</p>
+                <p ng-if="Home.batalha.mensagem">Jogador vencedor: {{Home.batalha.mensagem.playerVencedor}}</p>
+                {{Home.batalha.mensagem.statusBatalha}}
+                <textarea class="form-control" rows="10" style="font-size: 12px">{{Home.batalha.battleLog}}</textarea>      
+            </div>
+        </div>
+        <div class="col-md-2">
+
+            <div class="text-center" style="opacity: 1.0">
+                <img src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg" class="img-thumbnail" alt="...">
+            </div>
+            <h1 class="ion-text-center">{{Home.service.jogador.nickname}}</h1>
+
+            <hr>
+
+            <h2 class="ion-text-center">{{Home.service.jogador.heroi.nome}}</h2>            
+
+            <div class="form-group heroi-stats" ng-if="Home.service.jogador.heroi">
+                <span><i class="ra ra-health" aria-hidden="true"></i> Vida: {{Home.service.jogador.heroi.vida}}</span><br>
+                <span><i class="ra ra-sword" aria-hidden="true"></i> Ataque:{{Home.service.jogador.heroi.ataque}}</span><br>
+                <span><i class="ra ra-muscle-up" aria-hidden="true"></i> Forca:{{Home.service.jogador.heroi.forca}}</span><br>
+                <span><i class="ra ra-book" aria-hidden="true"></i> Inteligencia:{{Home.service.jogador.heroi.inteligencia}}</span><br>
+                <span><i class="ra ra-shield" aria-hidden="true"></i> Defesa:{{Home.service.jogador.heroi.defesa}}</span><br>
+                <span><i class="ra ra-player-dodge" aria-hidden="true"></i> Velocidade:{{Home.service.jogador.heroi.velocidade}}</span><br>
+                <span><i class="ra ra-blaster" aria-hidden="true"></i> Poder:{{Home.service.jogador.heroi.poder}}</span><br>
+            </div>   
+
+        </div>
+    </div>
+</div>
