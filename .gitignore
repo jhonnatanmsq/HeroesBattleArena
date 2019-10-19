@@ -1,0 +1,6 @@
+/target/
+/bin/
+/.idea/
+/.settings/
+/WebContent/dist/
+/WebContent/node_modules/

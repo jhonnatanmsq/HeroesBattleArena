@@ -1,0 +1,45 @@
+
+<div class="login-div" ng-controller="LoginController as vm">
+    <div class="row" class="opacity: 0.75">
+        <div class="col-md-7">
+            <h1> {{vm.app}} </h1> 
+        </div>
+
+        <div class="col-md-5" ng-init="vm.init()">
+            <h1>Cadastre-se</h1>
+            <hr>
+            <form ng-submit="vm.cadastrar(vm.jogador)">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Nickname:</label>
+                    <div class="col-sm-9">               
+                        <input type="texto" class="form-control" placeholder="SuperFulano012" ng-model="vm.jogador.nickname">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Senha:</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" ng-model="vm.jogador.senha">
+                    </div>
+                    
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Herói:</label>
+                    <div class="col-sm-9">
+                        <select name="heroi" id="heroi" class="form-control"
+                            ng-options="heroi as heroi.nome for heroi in vm.herois" ng-model="vm.jogador.heroi"></select>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="vm.jogador.heroi">
+                    <span><i class="ra ra-health" aria-hidden="true"></i> Vida: {{vm.jogador.heroi.vida}}</span><br>
+                    <span><i class="ra ra-sword" aria-hidden="true"></i> Ataque:{{vm.jogador.heroi.ataque}}</span><br>
+                    <span><i class="ra ra-muscle-up" aria-hidden="true"></i> Forca:{{vm.jogador.heroi.forca}}</span><br>
+                    <span><i class="ra ra-book" aria-hidden="true"></i> Inteligencia:{{vm.jogador.heroi.inteligencia}}</span><br>
+                    <span><i class="ra ra-shield" aria-hidden="true"></i> Defesa:{{vm.jogador.heroi.defesa}}</span><br>
+                    <span><i class="ra ra-player-dodge" aria-hidden="true"></i> Velocidade:{{vm.jogador.heroi.velocidade}}</span><br>
+                    <span><i class="ra ra-blaster" aria-hidden="true"></i> Poder:{{vm.jogador.heroi.poder}}</span><br>
+                </div>
+                <button type="submit" class="btn btn-success">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>
