@@ -2,6 +2,20 @@ package com.stefanini.hackaton.dto;
 
 import java.io.Serializable;
 
+/** Aqui é a classe com as informações que serão entregues ao usuario
+ *
+ * Seto os dois jogadores, o Log da batalha e uma MenssagemDto
+ *
+ * O atributo battleLog é apenas uma String onde eu vou armazenar todos os estados da batalha
+ * cada chamada de setBattleLog que é feita na BatalhaService concatena Strings nesse atributo.
+ * Então basicamente cada alteração eu pego o valor que já esta armazenado na battleLog e faço uma
+ * concatenação com novas informações
+ *
+ * o atributo menssagem é o responsavel por mostrar/armazenar o personagem vencedor, o heroi vencedor
+ * e o estado da batalha (finalizada/empatada)
+ *
+ */
+
 public class BatalhaDto implements Serializable {
 
 

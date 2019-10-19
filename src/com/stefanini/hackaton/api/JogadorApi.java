@@ -45,6 +45,7 @@ public class JogadorApi extends BaseApi{
 
 		JogadorDto jogadorDto = jogadorService.auth(jogador);
 
+		//insere na sessão o jogador que conseguiu efetuar o login com sucesso
 		getHttpRequest().getSession().setAttribute("USER", jogadorDto);	
 		
 		

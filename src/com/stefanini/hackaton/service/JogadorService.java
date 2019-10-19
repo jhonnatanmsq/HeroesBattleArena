@@ -114,10 +114,16 @@ public class JogadorService extends BaseApi {
         return jDto;
     }
 	
-	public List<JogadorDto> findMatch(){
-		JogadorDto jogador = (JogadorDto) getHttpRequest().getSession().getAttribute("USER");
-		
+	public List<JogadorDto> findMatch() throws NegocioException{
+
+		//pega o usuario diretamente na sessão do servidor, sem haver a necessidade de ter q informar qual usuario esta fazendo a requisição;
+		JogadorDto jogador = (JogadorDto) getHttpRequest().getSession().getAttribute("USER"); //pega oq esta na sessão com atributo "USER' e da um cast para um JogadorDto
+
 		List<Jogador> jogadorList = jogadorDAO.findMatch(jogador.getNickname());
+
+		if(jogadorList == null || jogadorList.isEmpty()){
+			throw new NegocioException("Nenhum oponente disponivel para batalha");
+		}
 		
 		return listDto(jogadorList);
 	}

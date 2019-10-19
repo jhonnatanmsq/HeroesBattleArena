@@ -21,7 +21,7 @@ public class RequestFilter implements Filter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
         if(httpServletRequest.getSession().getAttribute("USER") == null) {
-
+            //alterei o throw para que o status retorne 401 ao inves de 500
             httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Acesso Negado!");
 
         } else {
