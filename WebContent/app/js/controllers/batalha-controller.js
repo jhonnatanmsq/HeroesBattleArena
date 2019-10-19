@@ -13,6 +13,7 @@ app.controller("BatalhaController", function($scope, BatalhaService, $location, 
 			self.oponente = res;
 		}).error(data =>{
 			alertify.error(data.menssagem);
+			$location.path("/");
 		});		
 	}
 

@@ -1,114 +1,108 @@
 <div class="game-div"  ng-controller="HeroiController as Heroi" ng-init="Heroi.init()">
-        <div class="row" class="opacity: 0.75">
-            <div class="col-md-3">
-                <div class="text-center" style="opacity: 1.0">
-                    <img src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg" width="200px" class="img-thumbnail" alt="...">
-                </div>
-                <h1 class="text-center">{{Heroi.heroiSelec.nome}}</h1>
-    
-                <hr>       
-    
-                <div class="form-group heroi-stats">
-                    <span>
-                        <i class="ra ra-health" aria-hidden="true"></i> 
-                        Vida: {{Heroi.heroiSelec.vida}}
-                    </span>
-                    <br>
-                    <span>
-                        <i class="ra ra-sword" aria-hidden="true"></i> 
-                        Ataque:{{Heroi.heroiSelec.ataque}}
-                    </span>
-                    <br>
-                    <span>
-                        <i class="ra ra-muscle-up" aria-hidden="true"></i> 
-                        Forca:{{Heroi.heroiSelec.forca}}
-                    </span>
-                    <br>
-                    <span>
-                        <i class="ra ra-book" aria-hidden="true"></i> 
-                        Inteligencia:{{Heroi.heroiSelec.inteligencia}}
-                    </span>
-                    <br>
-                    <span>
-                        <i class="ra ra-shield" aria-hidden="true"></i> 
-                        Defesa:{{Heroi.heroiSelec.defesa}}
-                    </span>
-                    <br>
-                    <span>
-                        <i class="ra ra-player-dodge" aria-hidden="true"></i> 
-                        Velocidade:{{Heroi.heroiSelec.velocidade}}
-                    </span>
-                    <br>
-                    <span>
-                        <i class="ra ra-blaster" aria-hidden="true"></i> 
-                        Poder:{{Heroi.heroiSelec.poder}}
-                    </span>
-                    <br>
-                </div>
-    
-            </div>
-            <div class="col-md-9">
+    <div class="row" class="opacity: 0.75">
+        <div class="col-md-9">
+            <div>
+                <a type="button" href="#/" class="btn btn-primary float-left">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i> 
+                        Voltar
+                </a>
 
-                <div>
-                    <a type="button" href="#/" class="btn btn-primary float-left">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i> 
-                            Voltar
-                    </a>
-    
-                    <h2 class="mr-5">Lista de Heróis</h2>
-                    
-                    <br>
-                    <br>
-    
-                    <div class="row op-limit">
-                        <div class="oponentes"ng-repeat="heroi in Heroi.herois">
-                            <div class="card" ng-click="Heroi.getHeroi(heroi.id)">
-                                <div class="card-body">
-                                    <h3 class="card-title">{{heroi.nome}}</h3>
-                                </div>
-                                <div class="card-footer">
-                                    <span>
-                                        <i class="ra ra-health" aria-hidden="true"></i> 
-                                        Vida: {{heroi.vida}}
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="ra ra-sword" aria-hidden="true"></i> 
-                                        Ataque: {{heroi.ataque}}
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="ra ra-muscle-up" aria-hidden="true"></i> 
-                                        Forca: {{heroi.forca}}
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="ra ra-book" aria-hidden="true"></i> 
-                                        Inteligencia: {{heroi.inteligencia}}
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="ra ra-shield" aria-hidden="true"></i> 
-                                        Defesa: {{heroi.defesa}}
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="ra ra-player-dodge" aria-hidden="true"></i> 
-                                        Velocidade: {{heroi.velocidade}}
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="ra ra-blaster" aria-hidden="true"></i> 
-                                        Poder: {{heroi.poder}}
-                                    </span>
-                                </div>
+                <h2 class="mr-5">Lista de Heróis</h2>
+                
+                <br>
+                <br>
+
+                <div class="row op-limit">
+                    <div class="oponentes"ng-repeat="heroi in Heroi.herois">
+                        <div class="card" ng-click="Heroi.getHeroi(heroi.id)">
+                            <div class="card-body">
+                                <h3 class="card-title">{{heroi.nome}}</h3>
+                            </div>
+                            <div class="card-footer">
+                                <span>
+                                    <i class="ra ra-health" aria-hidden="true"></i> 
+                                    Vida: {{heroi.vida}}
+                                </span>
+                                <br>
+                                <span>
+                                    <i class="ra ra-sword" aria-hidden="true"></i> 
+                                    Ataque: {{heroi.ataque}}
+                                </span>
+                                <br>
+                                <span>
+                                    <i class="ra ra-muscle-up" aria-hidden="true"></i> 
+                                    Forca: {{heroi.forca}}
+                                </span>
+                                <br>
+                                <span>
+                                    <i class="ra ra-book" aria-hidden="true"></i> 
+                                    Inteligencia: {{heroi.inteligencia}}
+                                </span>
+                                <br>
+                                <span>
+                                    <i class="ra ra-shield" aria-hidden="true"></i> 
+                                    Defesa: {{heroi.defesa}}
+                                </span>
+                                <br>
+                                <span>
+                                    <i class="ra ra-player-dodge" aria-hidden="true"></i> 
+                                    Velocidade: {{heroi.velocidade}}
+                                </span>
+                                <br>
+                                <span>
+                                    <i class="ra ra-blaster" aria-hidden="true"></i> 
+                                    Poder: {{heroi.poder}}
+                                </span>
                             </div>
                         </div>
                     </div>
-    
-                    <br>
                 </div>
-    
+                <br>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="text-center" style="opacity: 1.0">
+                <img src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg" width="200px" class="img-thumbnail" alt="...">
+            </div>
+            <h1 class="text-center">{{Heroi.heroiSelec.nome}}</h1>
+            <hr>
+            <div class="form-group heroi-stats">
+                <span>
+                    <i class="ra ra-health" aria-hidden="true"></i> 
+                    Vida: {{Heroi.heroiSelec.vida}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-sword" aria-hidden="true"></i> 
+                    Ataque:{{Heroi.heroiSelec.ataque}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-muscle-up" aria-hidden="true"></i> 
+                    Forca:{{Heroi.heroiSelec.forca}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-book" aria-hidden="true"></i> 
+                    Inteligencia:{{Heroi.heroiSelec.inteligencia}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-shield" aria-hidden="true"></i> 
+                    Defesa:{{Heroi.heroiSelec.defesa}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-player-dodge" aria-hidden="true"></i> 
+                    Velocidade:{{Heroi.heroiSelec.velocidade}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-blaster" aria-hidden="true"></i> 
+                    Poder:{{Heroi.heroiSelec.poder}}
+                </span>
+                <br>
             </div>
         </div>
     </div>
+</div>

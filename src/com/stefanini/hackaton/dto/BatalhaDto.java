@@ -1,7 +1,5 @@
 package com.stefanini.hackaton.dto;
 
-import com.stefanini.hackaton.entities.Jogador;
-
 import java.io.Serializable;
 
 public class BatalhaDto implements Serializable {

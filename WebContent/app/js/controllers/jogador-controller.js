@@ -1,4 +1,4 @@
-app.controller("JogadorController", function ($scope, JogadorService, AuthService) {
+app.controller("JogadorController", function ($scope, JogadorService, AuthService, $location) {
     const self = this;
    
     self.auth = AuthService;
@@ -20,7 +20,8 @@ app.controller("JogadorController", function ($scope, JogadorService, AuthServic
         JogadorService.getJogadores().success(res =>{
             self.jogadores = res;
         }).error(data =>{
-
+            alertify.error("Ocorreu um erro!");
+            $location.path("/");
         });
     }
 
@@ -28,7 +29,8 @@ app.controller("JogadorController", function ($scope, JogadorService, AuthServic
         JogadorService.getJogador(id).success(res =>{
             self.jogadorSelec = res;
         }).error(data => {
-
+            alertify.error("Ocorreu um erro!");
+            $location.path("/");
         });
     }
 

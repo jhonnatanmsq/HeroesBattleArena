@@ -3,11 +3,9 @@ package com.stefanini.hackaton.api;
 import com.stefanini.hackaton.dto.JogadorDto;
 import com.stefanini.hackaton.dto.JogadorInsertDto;
 import com.stefanini.hackaton.dto.JogadorLoginDto;
-import com.stefanini.hackaton.entities.Jogador;
 import com.stefanini.hackaton.rest.exceptions.NegocioException;
 import com.stefanini.hackaton.service.JogadorService;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

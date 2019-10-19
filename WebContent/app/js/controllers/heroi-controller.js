@@ -1,4 +1,4 @@
-app.controller("HeroiController", function ($scope, HomeService, HeroiService) {
+app.controller("HeroiController", function ($scope, HeroiService, $location) {
     const self = this;
 
 
@@ -17,15 +17,17 @@ app.controller("HeroiController", function ($scope, HomeService, HeroiService) {
         HeroiService.getHerois().success(res => {
             self.herois = res;
         }).error(data =>{
-
+            alertify.error("Ocorreu um erro!");
+            $location.path("/");
         });
     }
 
     self.getHeroi = function(id){
         HeroiService.getHeroi(id).success(res =>{
             self.heroiSelec = res;
-        }).error(data => {
-            
+        }).error(data => {            
+            alertify.error("Ocorreu um erro!");
+            $location.path("/");
         });
     }
 

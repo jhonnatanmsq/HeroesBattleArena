@@ -1,12 +1,10 @@
 package com.stefanini.hackaton.service;
 
 import com.stefanini.hackaton.api.BaseApi;
-import com.stefanini.hackaton.dto.HeroiDto;
 import com.stefanini.hackaton.dto.JogadorDto;
 import com.stefanini.hackaton.dto.JogadorInsertDto;
 import com.stefanini.hackaton.dto.JogadorLoginDto;
 import com.stefanini.hackaton.entities.Jogador;
-import com.stefanini.hackaton.parsers.HeroiParserDTO;
 import com.stefanini.hackaton.parsers.JogadorParserDTO;
 import com.stefanini.hackaton.persistence.JogadorDAO;
 import com.stefanini.hackaton.rest.exceptions.NegocioException;
@@ -14,7 +12,6 @@ import com.stefanini.hackaton.rest.exceptions.NegocioException;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -25,9 +22,6 @@ public class JogadorService extends BaseApi {
 
 	@Inject
 	JogadorDAO jogadorDAO;
-
-	@Inject
-    HeroiParserDTO heroiParserDTO;
 
 
 	public List<JogadorDto> listar() throws NegocioException{
@@ -44,8 +38,7 @@ public class JogadorService extends BaseApi {
 	public JogadorDto findById(Integer id)throws NegocioException {
 		try{
 		    Jogador jogador = jogadorDAO.findById(id);
-		    JogadorDto jogadorDto = parser.toDTO(jogadorDAO.findById(id));
-            jogadorDto.setHeroi(heroiParserDTO.toDTO(jogador.getHeroi()));
+		    JogadorDto jogadorDto = parser.toDTO(jogador);
 			return jogadorDto;
 		}catch (NullPointerException e){
 			throw new NegocioException("Jogador não encontrado!");
@@ -78,7 +71,6 @@ public class JogadorService extends BaseApi {
 		}
 
 		Jogador jogadorE = parser.toEntity(jogador);
-		jogadorE.setHeroi(heroiParserDTO.toEntity(jogador.getHeroi()));
 
 		jogadorDAO.insert(jogadorE);
 	}
@@ -89,8 +81,6 @@ public class JogadorService extends BaseApi {
 			Jogador jogadorAuth = jogadorDAO.login(jogador);
 
 			JogadorDto jogadorDto = parser.toDTO(jogadorAuth);
-			
-			jogadorDto.setHeroi(heroiParserDTO.toDTO(jogadorAuth.getHeroi()));
 
 			return jogadorDto;
 
@@ -121,8 +111,6 @@ public class JogadorService extends BaseApi {
 
         JogadorDto jDto = parser.toDTO(jogador);
 
-        jDto.setHeroi(heroiParserDTO.toDTO(jogador.getHeroi()));
-
         return jDto;
     }
 	
@@ -136,15 +124,7 @@ public class JogadorService extends BaseApi {
 	
 	
 	private List<JogadorDto> listDto(List<Jogador> jogadorList){
-		List<JogadorDto> jogadorDtoList = new ArrayList<>();
-
-        int i = 0;
-
-        for (Jogador jogador : jogadorList) {
-            jogadorDtoList.add(parser.toDTO(jogador));
-            jogadorDtoList.get(i).setHeroi(heroiParserDTO.toDTO(jogador.getHeroi()));
-            i++;
-        }
+		List<JogadorDto> jogadorDtoList = parser.toDTO(jogadorList);
 	    return jogadorDtoList;
 	}
 

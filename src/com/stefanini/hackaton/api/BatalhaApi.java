@@ -1,8 +1,5 @@
 package com.stefanini.hackaton.api;
 
-import com.stefanini.hackaton.dto.BatalhaDto;
-import com.stefanini.hackaton.dto.JogadorDto;
-import com.stefanini.hackaton.entities.Jogador;
 import com.stefanini.hackaton.rest.exceptions.NegocioException;
 import com.stefanini.hackaton.service.BatalhaService;
 import com.stefanini.hackaton.service.HeroiService;
@@ -29,7 +26,6 @@ public class BatalhaApi{
 
 	@GET
 	@Path("/{oponente}")
-	//@Produces(MediaType.TEXT_PLAIN)
 	public Response playerBattle(@PathParam("oponente") Integer opId) throws NegocioException{
 
 		return Response.ok(batalhaService.playerBattle(opId)).build();
@@ -38,7 +34,6 @@ public class BatalhaApi{
 
 	@GET
 	@Path("/bot")
-	//@Produces(MediaType.TEXT_PLAIN)
 	public Response botBattle() throws NegocioException{
 
 		return Response.ok(batalhaService.botBattle()).build();

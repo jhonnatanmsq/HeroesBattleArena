@@ -15,15 +15,15 @@ app.controller("GameController", function($scope, BatalhaService, $location){
 	}
 
 	self.bttPlayer = function(id){
-		$location.path("/batalhar/"+id)
+		$location.path("/batalhar/"+id);
 	}
 
 	self.bttBot = function(){
-		$location.path("/batalhar/")
+		$location.path("/batalhar/");
 	}
 
 	self.voltar = function(){
-		self.ready = !self.ready
+		self.ready = !self.ready;
 	}
 
 })

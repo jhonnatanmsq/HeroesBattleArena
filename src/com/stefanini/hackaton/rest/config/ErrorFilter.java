@@ -1,7 +1,6 @@
 package com.stefanini.hackaton.rest.config;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import com.stefanini.hackaton.rest.exceptions.NegocioException;
 
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.core.MediaType;
@@ -9,8 +8,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
-
-import com.stefanini.hackaton.rest.exceptions.NegocioException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 @Provider
 public class ErrorFilter implements ExceptionMapper<Exception> {
