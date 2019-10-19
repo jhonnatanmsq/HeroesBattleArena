@@ -16,6 +16,7 @@
 .game-div {
 	width: 95%;
 	padding: 25px;
+	min-height: 550px;
 	text-align: center;
 	margin-top: 1.5%;
 	margin-left: auto;

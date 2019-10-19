@@ -21,7 +21,14 @@ app.config(['$routeProvider',
             title: 'Batalha',
             templateUrl: 'app/js/pages/batalha.html'
         })
-
+        .when('/jogadores', {
+            title: 'Jogador',
+            templateUrl: 'app/js/pages/jogadores.html'
+        })
+        .when('/herois', {
+            title: 'Heróis',
+            templateUrl: 'app/js/pages/herois.html'
+        })
         .otherwise({
             redirectTo: '/'
         });

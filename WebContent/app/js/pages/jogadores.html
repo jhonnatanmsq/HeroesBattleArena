@@ -1,0 +1,122 @@
+<div class="game-div"  ng-controller="JogadorController as Jogador" ng-init="Jogador.init()">
+    <div class="row" class="opacity: 0.75">
+        <div class="col-md-3">
+            <div class="text-center" style="opacity: 1.0">
+                <img src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg" width="200px" class="img-thumbnail" alt="...">
+            </div>
+            <h1 class="text-center">{{Jogador.jogadorSelec.nickname}}</h1>
+
+            <hr>
+
+            <h2 class="text-center">{{Jogador.jogadorSelec.heroi.nome}}</h2>            
+
+            <div class="form-group heroi-stats">
+                <span>
+                    <i class="ra ra-health" aria-hidden="true"></i> 
+                    Vida: {{Jogador.jogadorSelec.heroi.vida}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-sword" aria-hidden="true"></i> 
+                    Ataque:{{Jogador.jogadorSelec.heroi.ataque}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-muscle-up" aria-hidden="true"></i> 
+                    Forca:{{Jogador.jogadorSelec.heroi.forca}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-book" aria-hidden="true"></i> 
+                    Inteligencia:{{Jogador.jogadorSelec.heroi.inteligencia}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-shield" aria-hidden="true"></i> 
+                    Defesa:{{Jogador.jogadorSelec.heroi.defesa}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-player-dodge" aria-hidden="true"></i> 
+                    Velocidade:{{Jogador.jogadorSelec.heroi.velocidade}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-blaster" aria-hidden="true"></i> 
+                    Poder:{{Jogador.jogadorSelec.heroi.poder}}
+                </span>
+                <br>
+            </div>
+            <a href="#/batalhar/{{Jogador.jogadorSelec.id}}" class="btn btn-success" 
+                    ng-if="Jogador.auth.jogador && Jogador.jogadorSelec.heroi.nome !== '????'"> 
+                <i class="ra ra-crossed-swords" aria-hidden="true"></i> 
+                Batalhar! 
+                <i class="ra ra-crossed-swords" aria-hidden="true"></i> 
+            </a>
+        </div>
+        <div class="col-md-9">
+
+            <div>
+                <a type="button" href="#/" class="btn btn-primary float-left">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i> 
+                        Voltar
+                </a>
+
+                <h2 class="mr-5">Lista de Jogadores</h2>
+                
+                <br>
+                <br>
+
+                <div class="row op-limit">
+                    <div class="oponentes" ng-repeat="jogador in Jogador.jogadores">
+                        <div class="card" ng-click="Jogador.getJogador(jogador.id)">
+                            <div class="card-body">
+                                <h3 class="card-title">{{jogador.nickname}}</h3>
+                            </div>
+                            <div class="card-footer">
+                                <h4 class="card-title">{{jogador.heroi.nome}}</h4>
+                                <span>
+                                    <i class="ra ra-health" aria-hidden="true"></i> 
+                                    Vida: {{jogador.heroi.vida}}
+                                </span>
+                                <br>
+                                <span>
+                                    <i class="ra ra-sword" aria-hidden="true"></i> 
+                                    Ataque: {{jogador.heroi.ataque}}
+                                </span>
+                                <br>
+                                <span>
+                                    <i class="ra ra-muscle-up" aria-hidden="true"></i> 
+                                    Forca: {{jogador.heroi.forca}}
+                                </span>
+                                <br>
+                                <span>
+                                    <i class="ra ra-book" aria-hidden="true"></i> 
+                                    Inteligencia: {{jogador.heroi.inteligencia}}
+                                </span>
+                                <br>
+                                <span>
+                                    <i class="ra ra-shield" aria-hidden="true"></i> 
+                                    Defesa: {{jogador.heroi.defesa}}
+                                </span>
+                                <br>
+                                <span>
+                                    <i class="ra ra-player-dodge" aria-hidden="true"></i> 
+                                    Velocidade: {{jogador.heroi.velocidade}}
+                                </span>
+                                <br>
+                                <span>
+                                    <i class="ra ra-blaster" aria-hidden="true"></i> 
+                                    Poder: {{jogador.heroi.poder}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+            </div>
+
+        </div>
+    </div>
+</div>

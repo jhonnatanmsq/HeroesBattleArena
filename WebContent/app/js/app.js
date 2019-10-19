@@ -6,7 +6,7 @@ app.constant('config', {
 
 app.run(function Run($rootScope, $location, AuthService) {
     $rootScope.$on('$routeChangeStart', function (evt, route) {
-        if (!AuthService.jogador && route.originalPath !== "/" && route.originalPath !== "/login") {
+        if (!AuthService.jogador && route.originalPath !== "/" && route.originalPath !== "/login" && route.originalPath !== "/jogador" && route.originalPath !== "/heroi") {
             $location.path("/");
         } else if(AuthService.jogador && (route.originalPath === "/" || route.originalPath === "/login")){
             $location.path("/game");
