@@ -8,6 +8,7 @@ app.controller("AuthController", function($scope, AuthService, $cookies, $locati
 		jogador.senha = btoa(jogador.senha);
 		self.service.login(jogador).success((res, status, headers) => {
 			self.service.jogador = res;
+			jogador.senha = null;
 			sessionStorage.jogador = JSON.stringify(res);
 			sessionStorage.JSESSIONID = headers("JSESSIONID");
 			$cookies.JSESSIONID = sessionStorage.JSESSIONID;

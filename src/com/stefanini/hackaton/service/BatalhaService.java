@@ -35,9 +35,10 @@ public class BatalhaService extends BaseApi {
 
         JogadorDto player = jogadorService.findById(jogador.getId());
         JogadorDto oponente = jogadorService.findById(opId);
-
-        batalhaDto.setPlayer(player);
-        batalhaDto.setOponente(oponente);
+        
+        if(player.getId().equals(oponente.getId()) || player.getNickname().equals(oponente.getNickname())) {
+        	throw new NegocioException("Não é possível batalhar com você mesmo!");
+        }
 
         batalha(player, oponente);
 
