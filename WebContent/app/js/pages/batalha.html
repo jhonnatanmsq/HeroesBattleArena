@@ -1,8 +1,8 @@
-<div class="game-div" ng-controller="BatalhaController as Batalha" ng-init="Batalha.init()">
-    <div class="row" class="opacity: 0.75">
-        <div class="col-md-3" ng-controller="AuthController as Auth">
-            <div class="text-center" style="opacity: 1.0">
-                <img src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg" width="200px" class="img-thumbnail" alt="...">
+<div class="game-div" ng-controller="BatalhaController as Batalha">
+    <div class="row">
+        <div class="col-md-3 batalha-card" ng-controller="AuthController as Auth">
+            <div class="text-center">
+                <img src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg" width="200px" class="img-thumbnail">
             </div>
             <h1 class="ion-text-center">{{Auth.service.jogador.nickname}}</h1>
 
@@ -11,28 +11,95 @@
             <h2 class="ion-text-center">{{Auth.service.jogador.heroi.nome}}</h2>            
 
             <div class="form-group heroi-stats" ng-if="Auth.service.jogador.heroi">
-                <span><i class="ra ra-health" aria-hidden="true"></i> Vida: {{Auth.service.jogador.heroi.vida}}</span><br>
-                <span><i class="ra ra-sword" aria-hidden="true"></i> Ataque:{{Auth.service.jogador.heroi.ataque}}</span><br>
-                <span><i class="ra ra-muscle-up" aria-hidden="true"></i> Forca:{{Auth.service.jogador.heroi.forca}}</span><br>
-                <span><i class="ra ra-book" aria-hidden="true"></i> Inteligencia:{{Auth.service.jogador.heroi.inteligencia}}</span><br>
-                <span><i class="ra ra-shield" aria-hidden="true"></i> Defesa:{{Auth.service.jogador.heroi.defesa}}</span><br>
-                <span><i class="ra ra-player-dodge" aria-hidden="true"></i> Velocidade:{{Auth.service.jogador.heroi.velocidade}}</span><br>
-                <span><i class="ra ra-blaster" aria-hidden="true"></i> Poder:{{Auth.service.jogador.heroi.poder}}</span><br>
+                <span>
+                    <i class="ra ra-health" aria-hidden="true"></i> 
+                    Vida: {{Auth.service.jogador.heroi.vida}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-sword" aria-hidden="true"></i> 
+                    Ataque: {{Auth.service.jogador.heroi.ataque}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-muscle-up" aria-hidden="true"></i> 
+                    Forca: {{Auth.service.jogador.heroi.forca}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-book" aria-hidden="true"></i> 
+                    Inteligencia: {{Auth.service.jogador.heroi.inteligencia}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-shield" aria-hidden="true"></i> 
+                    Defesa:{{Auth.service.jogador.heroi.defesa}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-player-dodge" aria-hidden="true"></i> 
+                    Velocidade: {{Auth.service.jogador.heroi.velocidade}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-blaster" aria-hidden="true"></i> 
+                    Poder: {{Auth.service.jogador.heroi.poder}}
+                </span>
+                <br>
             </div>        
         </div>
-        <div class="col-md-6">
-            <div class="form-group">        
-                <button ng-click="Batalha.batalharPlayer()" class="btn btn-primary">batalha</button>
-                <p ng-if="Batalha.batalha.mensagem">Heroi vencedor: {{Batalha.batalha.mensagem.heroiVencedor}}</p>
-                <p ng-if="Batalha.batalha.mensagem">Jogador vencedor: {{Batalha.batalha.mensagem.playerVencedor}}</p>
-                {{Batalha.batalha.mensagem.statusBatalha}}
-                <textarea class="form-control" rows="21" style="font-size: 12px">{{Batalha.batalha.battleLog}}</textarea>      
+        <div class="col-md-6" ng-if="Batalha.tipo === 'Player'" ng-init="Batalha.findPlayer()">
+            <div>
+                <div>
+                    <button type="button" ng-click="Batalha.voltar()" class="btn btn-primary float-left">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i> 
+                            Voltar
+                    </button>
+                    <br>
+                    <br>
+                    <button type="button" ng-if="!Batalha.ready" ng-click="Batalha.batalharPlayer()" class="btn btn-primary btn-game">
+                        <i class="ra ra-crossed-swords" aria-hidden="true"></i> 
+                            Batalhar 
+                        <i class="ra ra-crossed-swords" aria-hidden="true"></i>
+                    </button> 
+                </div>
+                <div ng-if="Batalha.ready">
+                    <h2 ng-if="Batalha.batalha.mensagem">Vencedor: {{Batalha.batalha.mensagem.playerVencedor}} - {{Batalha.batalha.mensagem.heroiVencedor}}</h2>
+
+                    <h2>{{Batalha.batalha.mensagem.statusBatalha}}</h2>
+                    <textarea class="form-control" readonly rows="20" style="font-size: 13px">{{Batalha.batalha.battleLog}}</textarea>
+                </div>    
             </div>
         </div>
-        <div class="col-md-3">
+
+        <div class="col-md-6" ng-if="Batalha.tipo === 'BOT'" ng-init="Batalha.findBot()">
+            <div>
+                <div>
+                    <button type="button" ng-click="Batalha.voltar()" class="btn btn-primary float-left">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i> 
+                            Voltar
+                    </button>
+                    <br>
+                    <br>
+                    <button type="button" ng-if="!Batalha.ready" ng-click="Batalha.batalharBot()" class="btn btn-primary btn-game">
+                        <i class="ra ra-crossed-swords" aria-hidden="true"></i> 
+                            Batalhar 
+                        <i class="ra ra-crossed-swords" aria-hidden="true"></i>
+                    </button> 
+                </div>
+                <div ng-if="Batalha.ready">
+                    <h2 ng-if="Batalha.batalha.mensagem">Vencedor: {{Batalha.batalha.mensagem.playerVencedor}} - {{Batalha.batalha.mensagem.heroiVencedor}}</h2>
+
+                    <h2>{{Batalha.batalha.mensagem.statusBatalha}}</h2>
+                    <textarea class="form-control" readonly rows="20" style="font-size: 13px">{{Batalha.batalha.battleLog}}</textarea>
+                </div>    
+            </div>
+        </div>
+
+        <div class="col-md-3 batalha-card">
 
             <div class="text-center" style="opacity: 1.0">
-                <img src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg" width="200px" class="img-thumbnail" alt="...">
+                <img src="https://ombud.alaska.gov/wp-content/uploads/2018/01/no-user.jpg" width="200px" class="img-thumbnail">
             </div>
             <h1 class="ion-text-center">{{Batalha.oponente.nickname}}</h1>
 
@@ -41,13 +108,41 @@
             <h2 class="ion-text-center">{{Batalha.oponente.heroi.nome}}</h2>            
 
             <div class="form-group heroi-stats" ng-if="Batalha.oponente.heroi">
-                <span><i class="ra ra-health" aria-hidden="true"></i> Vida: {{Batalha.oponente.heroi.vida}}</span><br>
-                <span><i class="ra ra-sword" aria-hidden="true"></i> Ataque:{{Batalha.oponente.heroi.ataque}}</span><br>
-                <span><i class="ra ra-muscle-up" aria-hidden="true"></i> Forca:{{Batalha.oponente.heroi.forca}}</span><br>
-                <span><i class="ra ra-book" aria-hidden="true"></i> Inteligencia:{{Batalha.oponente.heroi.inteligencia}}</span><br>
-                <span><i class="ra ra-shield" aria-hidden="true"></i> Defesa:{{Batalha.oponente.heroi.defesa}}</span><br>
-                <span><i class="ra ra-player-dodge" aria-hidden="true"></i> Velocidade:{{Batalha.oponente.heroi.velocidade}}</span><br>
-                <span><i class="ra ra-blaster" aria-hidden="true"></i> Poder:{{Batalha.oponente.heroi.poder}}</span><br>
+                <span>
+                    <i class="ra ra-health" aria-hidden="true"></i> 
+                    Vida: {{Batalha.oponente.heroi.vida}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-sword" aria-hidden="true"></i> 
+                    Ataque: {{Batalha.oponente.heroi.ataque}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-muscle-up" aria-hidden="true"></i> 
+                    Forca: {{Batalha.oponente.heroi.forca}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-book" aria-hidden="true"></i> 
+                    Inteligencia: {{Batalha.oponente.heroi.inteligencia}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-shield" aria-hidden="true"></i> 
+                    Defesa: {{Batalha.oponente.heroi.defesa}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-player-dodge" aria-hidden="true"></i> 
+                    Velocidade: {{Batalha.oponente.heroi.velocidade}}
+                </span>
+                <br>
+                <span>
+                    <i class="ra ra-blaster" aria-hidden="true"></i> 
+                    Poder: {{Batalha.oponente.heroi.poder}}
+                </span>
+                <br>
             </div>   
 
         </div>

@@ -10,11 +10,16 @@ app.controller("GameController", function($scope, BatalhaService, $location){
 			self.oponentes = res;
 		}).error(data =>{
 			alertify.error("Ocorreu um erro ao buscar os oponenes!");
+			$location.path("/login");
 		});
 	}
 
 	self.bttPlayer = function(id){
 		$location.path("/batalhar/"+id)
+	}
+
+	self.bttBot = function(){
+		$location.path("/batalhar/")
 	}
 
 	self.voltar = function(){

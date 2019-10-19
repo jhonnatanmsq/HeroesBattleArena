@@ -17,7 +17,7 @@ app.controller("HomeController", function ($scope, HomeService, HeroiService) {
 		HeroiService.getHerois().success(res => {
 			self.herois = res;
 		}).error(data =>{
-			alertify.error(data.menssagem);
+			alertify.error("Ocorreu um erro ao carregar os heróis");
 		});
 	};	
 

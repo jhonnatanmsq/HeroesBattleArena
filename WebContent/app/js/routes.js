@@ -13,7 +13,7 @@ app.config(['$routeProvider',
             title: 'Game',
             templateUrl: 'app/js/pages/game.html'
         })
-        .when('/batalhar', {
+        .when('/batalhar/', {
             title: 'Batalha',
             templateUrl: 'app/js/pages/batalha.html'
         })
