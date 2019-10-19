@@ -17,6 +17,10 @@ app.config(['$routeProvider',
             title: 'Batalha',
             templateUrl: 'app/js/pages/batalha.html'
         })
+        .when('/batalhar/:id', {
+            title: 'Batalha',
+            templateUrl: 'app/js/pages/batalha.html'
+        })
 
         .otherwise({
             redirectTo: '/'

@@ -16,8 +16,8 @@ app.controller("HomeController", function ($scope, HomeService, HeroiService) {
 	self.carregarHerois = function () {
 		HeroiService.getHerois().success(res => {
 			self.herois = res;
-		}).error(function (res, status) {
-			alertify.error(res.menssagem);
+		}).error(data =>{
+			alertify.error(data.menssagem);
 		});
 	};	
 
@@ -30,7 +30,7 @@ app.controller("HomeController", function ($scope, HomeService, HeroiService) {
 			jogador.senha = '';
 			jogador.heroi = '';
 			self.logar(jogador);
-		}).error(function (data, status) {
+		}).error(data => {
 			alertify.error(data.menssagem);
 			jogador.senha = atob(jogador.senha);
 		});

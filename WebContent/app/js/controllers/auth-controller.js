@@ -13,7 +13,7 @@ app.controller("AuthController", function($scope, AuthService, $cookies, $locati
 			$cookies.JSESSIONID = sessionStorage.JSESSIONID;
 			$location.path("/game");
 			alertify.success("Logado com sucesso!");
-		}).error(function (data, status) {
+		}).error(data => {
 			alertify.error(data.menssagem);
 			jogador.senha = atob(jogador.senha);
 		});

@@ -13,12 +13,17 @@ app.factory("BatalhaService", function ($http, config) {
     }
 
     var _playerBattle = function(id){
-        return $http.get(`${config.apiUrl}/batalhar/${id}`, opts)
+        return $http.get(`${config.apiUrl}/batalhar/${id}`, opts);
+    }
+
+    var _findPlayer = function(id){
+        return $http.get(`${config.apiUrl}/jogador/${id}`);
     }
     
     return {
         findMatch: _findMatch,
         botBattle: _botBattle,
-        playerBattle: _playerBattle
+        playerBattle: _playerBattle,
+        findPlayer: _findPlayer
 	};	
 });

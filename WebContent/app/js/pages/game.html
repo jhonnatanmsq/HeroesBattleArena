@@ -49,16 +49,16 @@
             </div>
 
         </div>
-        <div class="col-md-9" ng-controller="BatalhaController as Batalha">
+        <div class="col-md-9" ng-controller="GameController as Game">
             
-            <div ng-if="!Batalha.ready">
-                <button type="button" ng-click="Batalha.bttPlayer()" class="btn btn-primary btn-game">
+            <div ng-if="!Game.ready">
+                <button type="button" ng-click="Game.findMatch()" class="btn btn-primary btn-game">
                     <i class="ra ra-crossed-swords" aria-hidden="true"></i> 
                         Partida contra Jogador 
                     <i class="ra ra-crossed-swords" aria-hidden="true"></i>
                 </button> 
                 <br>
-                <button type="button" ng-click="Batalha.bttBot()" class="btn btn-primary btn-game">
+                <button type="button" ng-click="Game.bttBot()" class="btn btn-primary btn-game">
                     <i class="fa fa-reddit-alien" aria-hidden="true"></i> 
                         Partida contra BOT 
                     <i class="fa fa-reddit-alien" aria-hidden="true"></i>            
@@ -67,8 +67,8 @@
 
             
 
-            <div ng-if="Batalha.ready">
-                <button type="button" ng-click="Batalha.voltar()" class="btn btn-primary float-left">
+            <div ng-if="Game.ready">
+                <button type="button" ng-click="Game.voltar()" class="btn btn-primary float-left">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i> 
                         Voltar
                 </button>
@@ -79,8 +79,8 @@
                 <br>
 
                 <div class="row op-limit">
-                    <div class="oponentes"ng-repeat="oponente in Batalha.oponentes">
-                        <div class="card"  >
+                    <div class="oponentes"ng-repeat="oponente in Game.oponentes">
+                        <div class="card" ng-click="Game.bttPlayer(oponente.id)">
                             <div class="card-body">
                                 <h3 class="card-title">{{oponente.nickname}}</h3>
                             </div>
