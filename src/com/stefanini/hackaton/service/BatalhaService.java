@@ -37,7 +37,7 @@ public class BatalhaService extends BaseApi {
         JogadorDto oponente = jogadorService.findById(opId);
         
         if(player.getId().equals(oponente.getId()) || player.getNickname().equals(oponente.getNickname())) {
-        	throw new NegocioException("Não é possível batalhar com você mesmo!");
+        	throw new NegocioException("Nao e possível batalhar com voce mesmo!");
         }
 
         batalha(player, oponente);
@@ -72,27 +72,32 @@ public class BatalhaService extends BaseApi {
 
         while (player.getHeroi().getVida() > 0 && oponente.getHeroi().getVida() > 0 && turno <= 100){
 
-            batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat("\n\nTurno:" + turno + "\n"));
+            player.getHeroi().setVelocidade(new Random().nextInt(100 - 1 + 1));
+            oponente.getHeroi().setVelocidade(new Random().nextInt(100 - 1 + 1));
 
-            atack(player.getHeroi(), oponente.getHeroi());
+            batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat("\n\nTurno: " + turno + "\n"));
 
-            if(oponente.getHeroi().getVida() < 0){
-                venceu(player.getHeroi(), player);
-                break;
-            }
+            if(player.getHeroi().getVelocidade() >= oponente.getHeroi().getVelocidade()){
+                atack(player.getHeroi(), oponente.getHeroi());
 
-            atack(oponente.getHeroi(), player.getHeroi());
+                if(oponente.getHeroi().getVida() < 0){
+                    venceu(player.getHeroi(), player);
+                    break;
+                }
+            }else{
+                atack(oponente.getHeroi(), player.getHeroi());
 
-            if(player.getHeroi().getVida() < 0){
-                venceu(oponente.getHeroi(), oponente);
-                break;
+                if(player.getHeroi().getVida() < 0){
+                    venceu(oponente.getHeroi(), oponente);
+                    break;
+                }
             }
 
             batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat(espaco));
 
             turno++;
 
-            if(turno > 100 && oponente.getHeroi().getVida() > 0 && player.getHeroi().getVida() > 0){
+            if(turno > 50 && oponente.getHeroi().getVida() > 0 && player.getHeroi().getVida() > 0){
                 empate();
             }
         }
@@ -114,12 +119,15 @@ public class BatalhaService extends BaseApi {
 
         alvo.setVida(alvo.getVida() - magia);
         alvo.setVida(alvo.getVida() - porrada);
+        
+        String hAtacante  = "\n O Heroi |" + atacante.getNome() + "| atacou! \n";
 
-        String danoFísico = "\n O Herói |" + alvo.getNome() + "| recebeu " + atackFisico + " pontos de dano físico e defendeu " + defesaFisica + " pontos";
-        String danoMágico = "\n O Herói |" + alvo.getNome() + "| recebeu " + atackMagico + " de dano mágico e defendeu " + defesaMagica + " pontos";
+        String danoFísico = "\n O Heroi |" + alvo.getNome() + "| recebeu " + atackFisico + " pontos de dano fisico e defendeu " + defesaFisica + " pontos";
+        String danoMágico = "\n O Heroi |" + alvo.getNome() + "| recebeu " + atackMagico + " de dano magico e defendeu " + defesaMagica + " pontos";
 
-        String vida = "\n O Herói |" + alvo.getNome() + "| está com " + alvo.getVida() + " pontos de vida restantes! \n";
+        String vida = "\n O Heroi |" + alvo.getNome() + "| esta com " + alvo.getVida() + " pontos de vida restantes! \n";
 
+        batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat(hAtacante));
         batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat(danoFísico));
         batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat(danoMágico));
         batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat(vida));
@@ -127,7 +135,7 @@ public class BatalhaService extends BaseApi {
 
     public void venceu(HeroiDto heroi, JogadorDto jogador){
         batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat(espaco));
-        batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat("\n\n ========= O Herói |" + heroi.getNome() + "| do Player |" + jogador.getNickname() + "| foi o campeão! ========="));
+        batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat("\n\n ========= O Heroi |" + heroi.getNome() + "| do Player |" + jogador.getNickname() + "| foi o campeao! ========="));
         mensagemDto.setStatusBatalha("Finalizada");
         mensagemDto.setPlayerVencedor(jogador.getNickname());
         mensagemDto.setHeroiVencedor(heroi.getNome());
@@ -135,7 +143,7 @@ public class BatalhaService extends BaseApi {
     }
 
     public void empate(){
-        batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat("\nEssa batalha não vai acabar nunca!\n"));
+        batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat("\nEssa batalha nao vai acabar nunca!\n"));
         batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat(espaco));
         batalhaDto.setBattleLog(batalhaDto.getBattleLog().concat("\n\n ========= A batalha terminou em Empate! ========="));
         mensagemDto.setStatusBatalha("Empate");
