@@ -39,6 +39,9 @@ public class BatalhaService extends BaseApi {
         //pega o usuario diretamente na sessão do servidor, sem haver a necessidade de ter q informar qual usuario esta fazendo a requisição;
         JogadorDto player = (JogadorDto) getHttpRequest().getSession().getAttribute("USER"); //pega oq esta na sessão com atributo "USER' e da um cast para um JogadorDto
 
+        //É necessário "resetar" a vida do heroi do jogador :D;
+        player.getHeroi().setVida(10000000);
+
         JogadorDto oponente = jogadorService.findById(opId);
         
         if(player.getId().equals(oponente.getId()) || player.getNickname().equals(oponente.getNickname())) {
@@ -54,6 +57,9 @@ public class BatalhaService extends BaseApi {
 
         //pega o usuario diretamente na sessão do servidor, sem haver a necessidade de ter q informar qual usuario esta fazendo a requisição;
         JogadorDto player = (JogadorDto) getHttpRequest().getSession().getAttribute("USER");//pega oq esta na sessão com atributo "USER' e da um cast para um JogadorDto
+
+        //É necessário "resetar" a vida do heroi do jogador :D
+        player.getHeroi().setVida(10000000);
 
         Integer idOp = new Random().nextInt(249 - 1 + 1);
 
