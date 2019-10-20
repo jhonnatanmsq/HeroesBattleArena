@@ -49,9 +49,14 @@ app.controller("BatalhaController", function($scope, BatalhaService, $location, 
 		self.ready = !self.ready;
 		self.service.playerBattle(self.id).success(res =>{
 			self.batalha = res;
-		}).error(data => {			
-			alertify.error("Ocorreu um erro ao realizar a batalha!");
-			self.authError();
+		}).error(data => {	
+			if(data.menssagem === undefined){
+				alertify.error("Ocorreu um erro ao realizar a batalha!");	
+				self.authError();
+			}else{
+				alertify.error(data.menssagem);
+				$location.path("/game")
+			}
 		});
 	}
 
