@@ -51,6 +51,15 @@ public class JogadorApi extends BaseApi{
 		
 		return Response.ok(jogadorDto).header("JSESSIONID", getHttpRequest().getSession().getId()).build();
 	}
+	
+	@GET
+	@Path("/logout")
+	public Response logout() {
+		
+		getHttpRequest().getSession().invalidate();
+		
+		return Response.ok().build();
+	}
 
 	@POST
 	public Response salvar(JogadorInsertDto jogador) throws NegocioException {

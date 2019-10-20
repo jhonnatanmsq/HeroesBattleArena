@@ -21,13 +21,18 @@ app.controller("AuthController", function($scope, AuthService, $cookies, $locati
     }
     
     self.logOut = function(){
-		delete sessionStorage.jogador;
-		delete sessionStorage.JSESSIONID;
-		delete $cookies.JSESSIONID;
-		$cookies.JSESSIONID = null;
-		self.service.jogador = null;
-		$location.path("/");
-		alertify.success("Até mais!");
+    	
+    	self.service.logout().success(res =>{
+    		delete sessionStorage.jogador;
+    		delete sessionStorage.JSESSIONID;
+    		delete $cookies.JSESSIONID;
+    		$cookies.JSESSIONID = null;
+    		self.service.jogador = null;
+    		$location.path("/");
+    		alertify.success("Até mais!");
+    	}).error(data =>{
+    		alertify.error("Ocorreu um erro ao efetuar essa requisição");
+    	});		
 	}
 
 })
